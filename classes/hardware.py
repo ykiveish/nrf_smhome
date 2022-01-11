@@ -1,10 +1,10 @@
 from core import co_definitions
-import MkSConnectorUART
+from mks import mks_uart_connector
 
 class HardwareLayer(co_definitions.ILayer):
 	def __init__(self):
 		co_definitions.ILayer.__init__(self)
-		self.HW = MkSConnectorUART.Connector()
+		self.HW = mks_uart_connector.Connector()
 
 		self.Locker			= None
 		self.AsyncListeners	= []

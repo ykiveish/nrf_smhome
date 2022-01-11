@@ -3,7 +3,7 @@ from core import co_definitions
 from core import co_terminal
 from classes import translator
 
-# import MkSLogger
+# from core import co_logger
 
 class NRFTask(co_definitions.ITask):
 	def __init__(self):

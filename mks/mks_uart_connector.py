@@ -8,17 +8,17 @@ import queue
 import _thread
 import threading
 
-import MkSUSBAdaptor
-import MkSProtocol
-import MkSAbstractConnector
+import mks.mks_uart_adaptor as mks_uart_adaptor
+import mks.mks_protocol as mks_protocol
+import mks.mks_abstract_connector as mks_abstract_connector
 
-class Connector (MkSAbstractConnector.AbstractConnector):
+class Connector (mks_abstract_connector.AbstractConnector):
 	def __init__ (self):
-		MkSAbstractConnector.AbstractConnector.__init__(self)
+		mks_abstract_connector.AbstractConnector.__init__(self)
 		self.ClassName 						= "Connector"
 		self.NodeType 						= 0
 		self.Adapters						= {}
-		self.Protocol 						= MkSProtocol.Protocol()
+		self.Protocol 						= mks_protocol.Protocol()
 		self.UARTInterfaces 				= []
 		self.RecievePacketsWorkerRunning	= False
 		# Events
@@ -46,7 +46,7 @@ class Connector (MkSAbstractConnector.AbstractConnector):
 		return ["/dev/" + item for item in dev if "ttyUSB" in item]
 	
 	def ListSerialComPorts(self):
-		adaptor = MkSUSBAdaptor.Adaptor("", 0)
+		adaptor = mks_uart_adaptor.Adaptor("", 0)
 		serial_devices = adaptor.ListSerialComPorts()
 		comports = []
 		for item in serial_devices:
@@ -65,7 +65,7 @@ class Connector (MkSAbstractConnector.AbstractConnector):
 		return comports
 	
 	def __Connect(self, path, baud):
-		adaptor = MkSUSBAdaptor.Adaptor(path, baud)
+		adaptor = mks_uart_adaptor.Adaptor(path, baud)
 		adaptor.OnSerialAsyncDataCallback 			= self.OnAdapterDataArrived
 		adaptor.OnSerialConnectionClosedCallback 	= self.OnAdapterDisconnected
 		if adaptor.Connect(3) is True:
@@ -121,7 +121,7 @@ class Connector (MkSAbstractConnector.AbstractConnector):
 	
 	def Connect(self, device_type):
 		self.NodeType = device_type
-		adaptor = MkSUSBAdaptor.Adaptor("", 0)
+		adaptor = mks_uart_adaptor.Adaptor("", 0)
 		self.UARTInterfaces = adaptor.ListSerialComPorts()
 		for serial_device in self.UARTInterfaces:
 			comport = serial_device[0]
