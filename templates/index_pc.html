@@ -22,7 +22,7 @@
         </main>
 
         <!-- Icons -->
-        <script src="{{ url_for('static', filename='js/vendor/feather.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='lib/feather/feather.min.js') }}"></script>
         <script src="{{ url_for('static', filename='lib/nodes/js/jquery_3_3_1/jquery.min.js') }}"></script>
         <script src="{{ url_for('static', filename='lib/nodes/js/popper_1_14_7/popper.min.js') }}"></script>
         <script src="{{ url_for('static', filename='lib/bootstrap/js/bootstrap.min.js') }}"></script>
@@ -30,12 +30,12 @@
 
         <script src="{{ url_for('static', filename='js/application/pidaptor.js') }}"></script>
         <script src="{{ url_for('static', filename='js/application/piterm.js') }}"></script>
-        <script src="{{ url_for('static', filename='lib/umks/MKSApi.js') }}"></script>
-
-        <script src="{{ url_for('static', filename='lib/umks/widgets/basic_graph.js') }}"></script>
-        <script src="{{ url_for('static', filename='lib/umks/widgets/basic_modal.js') }}"></script>
-        <script src="{{ url_for('static', filename='lib/umks/widgets/basic_table.js') }}"></script>
-        <script src="{{ url_for('static', filename='lib/umks/widgets/progress_bar.js') }}"></script>
+        
+        <script src="{{ url_for('static', filename='js/core/MKSApi.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/core/widgets/basic_graph.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/core/widgets/basic_modal.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/core/widgets/basic_table.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/core/widgets/progress_bar.js') }}"></script>
 
         <script type="text/javascript">
             var myVar       = "{{ data }}";
