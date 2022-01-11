@@ -1,6 +1,6 @@
 import struct
 from classes import hardware
-from classes import common
+from core import co_common
 
 class NRFCommands():
 	def __init__(self):
@@ -305,7 +305,7 @@ class NRF(hardware.HardwareLayer):
 			return None
 	
 	def SetRemoteNodeData(self, port, node_id, sensor_index, sensor_value):
-		arr_value = common.IntToBytes(sensor_value, 4)
+		arr_value = co_common.IntToBytes(sensor_value, 4)
 		# arr_value = value.to_bytes(4, 'big')
 		payload = [self.Commands.OPCODE_SET_NODES_DATA, 5, sensor_index] + arr_value
 		packet = self.Commands.ReadRemoteCommand(node_id, payload)

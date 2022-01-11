@@ -1,9 +1,9 @@
-from classes import definitions
+from core import co_definitions
 import MkSConnectorUART
 
-class HardwareLayer(definitions.ILayer):
+class HardwareLayer(co_definitions.ILayer):
 	def __init__(self):
-		definitions.ILayer.__init__(self)
+		co_definitions.ILayer.__init__(self)
 		self.HW = MkSConnectorUART.Connector()
 
 		self.Locker			= None

@@ -1,46 +1,21 @@
 import subprocess
-from classes import definitions
+from core import co_definitions
+from core import co_terminal
 from classes import translator
 
 # import MkSLogger
 
-class NRFTask(definitions.ITask):
+class NRFTask(co_definitions.ITask):
 	def __init__(self):
-		definitions.ITask.__init__(self, "NRFTask")
+		co_definitions.ITask.__init__(self, "NRFTask")
 		self.Name = "NRFTask"
 	
 	def Handler(self):
 		pass
 
-class TerminalLayer(definitions.ILayer):
+class Terminal(co_terminal.TerminalLayer):
 	def __init__(self):
-		definitions.ILayer.__init__(self)
-		self.ProcessRunning = True
-		self.Handlers = None
-	
-	def Run(self):	
-		try:
-			while(self.ProcessRunning is True):
-				raw  	= input('> ')
-				data 	= raw.split(" ")
-				cmd  	= data[0]
-				params 	= data[1:]
-
-				if self.Handlers is not None:
-					if cmd in self.Handlers:
-						self.Handlers[cmd](params)
-					else:
-						if cmd not in [""]:
-							print("unknown command")
-		except Exception as e:
-			print("Terminal Exception {0}".format(str(e)))
-	
-	def Exit(self):
-		self.ProcessRunning = False
-
-class Terminal(TerminalLayer):
-	def __init__(self):
-		TerminalLayer.__init__(self)
+		co_terminal.TerminalLayer.__init__(self)
 		self.HW 			= None
 		self.Application 	= None
 		self.Translator 	= translator.BasicTranslator()
